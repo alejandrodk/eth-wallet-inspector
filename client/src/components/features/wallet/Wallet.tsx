@@ -4,6 +4,7 @@ import { LiaEthereum } from "react-icons/lia";
 import { CgDanger } from "react-icons/cg";
 import { BsCurrencyExchange } from "react-icons/bs";
 import { IWallet, IWalletBalance } from "@/lib/types/app.types";
+import WalletFavButton from "./WalletFavButton";
 
 type Props = {
   wallet: IWallet;
@@ -17,6 +18,7 @@ type Props = {
 export default function Wallet(props: Props) {
   return (
     <Descriptions
+      extra={<WalletFavButton wallet={props.wallet} />}
       layout="horizontal"
       title={props.wallet.name ?? props.wallet.name}
       className="m-auto bg-white p-4 mb-4 rounded-md shadow-md w-1/2 hover:bg-slate-50"
