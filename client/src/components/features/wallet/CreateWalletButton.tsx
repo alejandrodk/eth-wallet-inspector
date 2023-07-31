@@ -12,9 +12,9 @@ export default function CreateWalletButton() {
     <>
       <button
         className={cn(
-          "m-auto w-full rounded-md mb-4",
-          "bg-slate-100 p-2 border-2 border-slate-400",
-          "hover:bg-slate-600 hover:text-white hover:border-slate-600"
+          "m-auto rounded-md",
+          "bg-white p-2 text-sm font-light border-stone-300 border",
+          "hover:bg-slate-600 hover:text-white"
         )}
         onClick={() => setParam({ key: "showCreateWalletForm", value: "true" })}
       >

@@ -9,6 +9,7 @@ export default function CurrentCurrencySelect(props: {
   const { getParam, setParam } = useParamSetter();
   return (
     <Select
+      className="m-auto w-[20%]"
       placeholder="Show prices in"
       allowClear
       options={props.currencies.map((curr) => ({

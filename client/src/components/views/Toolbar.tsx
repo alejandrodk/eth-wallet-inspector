@@ -7,16 +7,14 @@ export default async function Toolbar() {
   const currencies = await getCurrencyRates();
 
   return (
-    <div className="bg-white rounded-md p-4 shadow-md w-1/2 mx-auto my-10 flex flex-row">
-      <div className="w-[70%] flex flex-row">
-        <div className="bg-slate-100 p-2 rounded-md mr-4">
-          <CurrencyRates currencies={currencies} />
-        </div>
+    <>
+      <div className="bg-slate-100 w-1/2 p-4 rounded-md mx-auto mt-10">
+        <CurrencyRates currencies={currencies} />
       </div>
-      <div className="w-[30%] m-auto flex flex-col justify-center items-stretch">
+      <div className="bg-slate-100 rounded-md p-4 shadow-md w-1/2 mx-auto my-5 flex flex-row justify-center items-center">
         <CreateWalletButton />
         <CurrentCurrencySelect currencies={currencies} />
       </div>
-    </div>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import Toolbar from "@/components/ui/Toolbar";
+import Toolbar from "@/components/views/Toolbar";
 import WalletList from "@/components/features/wallet/WalletList";
 
 import { TbWorldSearch } from "react-icons/tb";
