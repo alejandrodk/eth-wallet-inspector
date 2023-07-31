@@ -3,9 +3,16 @@ import { EtherscanModule } from 'src/components/providers/etherscan/etherscan.mo
 import { CurrenciesController } from './currencies.controllers';
 import { CurrenciesRepository } from './currencies.repository';
 import { CurrenciesService } from './currencies.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Currency, CurrencySchema } from './database/currency.schema';
 
 @Module({
-  imports: [EtherscanModule],
+  imports: [
+    MongooseModule.forFeature([
+      { name: Currency.name, schema: CurrencySchema },
+    ]),
+    EtherscanModule,
+  ],
   controllers: [CurrenciesController],
   providers: [CurrenciesRepository, CurrenciesService],
 })
