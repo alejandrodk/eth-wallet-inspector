@@ -8,7 +8,6 @@ export const apiUrls = {
     transactions: (address: string) => `${api}/wallets/${address}/transactions`,
   },
   currencies: {
-    rates: () => `${api}/currencies/rates`,
-    ethPrice: () => `${api}/currencies/rates/eth`,
+    rates: () => `${api}/currencies`,
   },
 };

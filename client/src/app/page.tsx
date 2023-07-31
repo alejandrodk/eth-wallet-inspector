@@ -3,7 +3,10 @@ import WalletList from "@/components/features/wallet/WalletList";
 
 import { TbWorldSearch } from "react-icons/tb";
 
-export default async function Home() {
+export default async function Home(props: {
+  params: {};
+  searchParams: { currentCurrency: string };
+}) {
   return (
     <main className="min-h-screen grid grid-rows-[5vh_auto] bg-slate-200">
       <header className="flex items-center justify-center bg-white">
@@ -12,7 +15,7 @@ export default async function Home() {
       </header>
       <section className="flex flex-col items-start justify-start">
         <Toolbar />
-        <WalletList />
+        <WalletList currentCurrency={props.searchParams.currentCurrency} />
       </section>
     </main>
   );

@@ -6,9 +6,10 @@ export interface IWallet {
   old?: boolean;
 }
 
-export interface ICurrency {
-  currency: "USD" | "EUR";
-  rate: number;
+export interface ICurrencyRate {
+  id: string;
+  currency: string;
+  ethPrice: string;
 }
 
 export interface IWalletBalance {

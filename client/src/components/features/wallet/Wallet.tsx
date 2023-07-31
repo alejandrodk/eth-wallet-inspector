@@ -2,11 +2,16 @@
 import { Descriptions, Tag } from "antd";
 import { LiaEthereum } from "react-icons/lia";
 import { CgDanger } from "react-icons/cg";
+import { BsCurrencyExchange } from "react-icons/bs";
 import { IWallet, IWalletBalance } from "@/lib/types/app.types";
 
 type Props = {
   wallet: IWallet;
   balance?: IWalletBalance;
+  currencyBalance?: {
+    currency: string;
+    balance: number;
+  };
 };
 
 export default function Wallet(props: Props) {
@@ -30,6 +35,18 @@ export default function Wallet(props: Props) {
           }
         >
           {parseFloat(props.balance.balanceInEther).toFixed(4)}
+        </Descriptions.Item>
+      )}
+      {props.currencyBalance && (
+        <Descriptions.Item
+          label={
+            <span>
+              <BsCurrencyExchange className="mr-2 inline-block" />
+              {props.currencyBalance.currency} Balance
+            </span>
+          }
+        >
+          {new Intl.NumberFormat().format(props.currencyBalance.balance)}
         </Descriptions.Item>
       )}
       {props.wallet.old && (
