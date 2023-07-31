@@ -29,12 +29,11 @@ export class WalletsService extends ServiceBase<IWallet> {
 
   async getBalance(address: string[]) {
     const res = await this.etherscanService.getWalletsBalance(address);
-    const [result] = res.result;
-    return {
-      address: result.account,
-      balance: result.balance,
-      balanceInEther: formatEther(result.balance),
-    };
+    return res.result.map((balance) => ({
+      address: balance.account,
+      balance: balance.balance,
+      balanceInEther: formatEther(balance.balance),
+    }));
   }
 
   async getTransactions(address: string) {
