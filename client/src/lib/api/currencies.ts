@@ -1,13 +1,11 @@
 import { apiUrls } from "./urls";
 
-export const getCurrencyRates = async (): Promise<
-  {
-    currency: "USD" | "EUR";
-    rate: number;
-  }[]
-> => {
+export const getCurrencyRates = async (): Promise<{
+  usdRate: number;
+  euroRate: number;
+}> => {
   const res = await fetch(apiUrls.currencies.rates());
-  if (!res.ok) return [];
+  if (!res.ok) return { usdRate: 0, euroRate: 0 };
   return res.json();
 };
 

@@ -10,16 +10,10 @@ export class CurrenciesController {
   @Get('rates')
   @CacheTTL(60 * 60 * 24 * 1000)
   getRates() {
-    return [
-      {
-        currency: 'USD',
-        rate: 1,
-      },
-      {
-        currency: 'EUR',
-        rate: 0.85,
-      },
-    ];
+    return {
+      usdRate: 1,
+      euroRate: 0.85,
+    };
   }
 
   @Get('rates/eth')
