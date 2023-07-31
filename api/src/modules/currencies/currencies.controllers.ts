@@ -6,7 +6,6 @@ import { ControllerBase } from 'src/components/shared/services/controller';
 import { ICurrencyRate } from './currencies.types';
 
 @Controller('currencies')
-@UseInterceptors(CacheInterceptor)
 export class CurrenciesController
   extends ControllerBase<ICurrencyRate>
   implements OnModuleInit

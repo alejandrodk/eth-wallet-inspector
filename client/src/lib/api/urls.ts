@@ -10,5 +10,6 @@ export const apiUrls = {
   },
   currencies: {
     rates: () => `${api}/currencies`,
+    updateRate: (id: string) => `${api}/currencies/${id}`,
   },
 };
