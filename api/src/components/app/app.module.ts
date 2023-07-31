@@ -15,6 +15,7 @@ import { EtherscanModule } from '../providers/etherscan/etherscan.module';
 import { WalletsModule } from 'src/modules/wallets/wallets.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { CurrenciesModule } from 'src/modules/currencies/currencies.module';
+import { FreeCurrencyModule } from '../providers/freeCurrency/freeCurrency.module';
 
 dotenv.config();
 dotenvFlow.config();
@@ -41,6 +42,7 @@ dotenvFlow.config();
       isGlobal: true,
     }),
     EtherscanModule,
+    FreeCurrencyModule,
     WalletsModule,
     CurrenciesModule,
   ],

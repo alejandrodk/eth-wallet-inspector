@@ -5,6 +5,7 @@ import { CurrenciesRepository } from './currencies.repository';
 import { CurrenciesService } from './currencies.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Currency, CurrencySchema } from './database/currency.schema';
+import { FreeCurrencyModule } from 'src/components/providers/freeCurrency/freeCurrency.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { Currency, CurrencySchema } from './database/currency.schema';
       { name: Currency.name, schema: CurrencySchema },
     ]),
     EtherscanModule,
+    FreeCurrencyModule,
   ],
   controllers: [CurrenciesController],
   providers: [CurrenciesRepository, CurrenciesService],

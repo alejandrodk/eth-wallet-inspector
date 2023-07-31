@@ -2,6 +2,7 @@ export enum EnvObjects {
   APP_CONFIG = 'AppConfig',
   MONGO_CONFIG = 'MongoConfig',
   ETHERSCAN_CONFIG = 'EtherscanConfig',
+  FREE_CURRENCY_CONFIG = 'FreeCurrencyConfig',
 }
 
 export interface IEnvObjects {
@@ -12,6 +13,10 @@ export interface IEnvObjects {
     uri: string;
   };
   [EnvObjects.ETHERSCAN_CONFIG]: {
+    apiHost: string;
+    apiKey: string;
+  };
+  [EnvObjects.FREE_CURRENCY_CONFIG]: {
     apiHost: string;
     apiKey: string;
   };
@@ -29,5 +34,9 @@ export const envConfiguration = (
   [EnvObjects.ETHERSCAN_CONFIG]: {
     apiHost: processEnv.ETHERSCAN_API_HOST,
     apiKey: processEnv.ETHERSCAN_API_KEY,
+  },
+  [EnvObjects.FREE_CURRENCY_CONFIG]: {
+    apiHost: processEnv.FREE_CURRENCY_API_HOST,
+    apiKey: processEnv.FREE_CURRENCY_API_KEY,
   },
 });
