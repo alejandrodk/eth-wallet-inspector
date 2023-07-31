@@ -1,6 +1,7 @@
 "use client";
-import { Descriptions } from "antd";
+import { Descriptions, Tag } from "antd";
 import { LiaEthereum } from "react-icons/lia";
+import { CgDanger } from "react-icons/cg";
 import { IWallet, IWalletBalance } from "@/lib/types/app.types";
 
 type Props = {
@@ -29,6 +30,14 @@ export default function Wallet(props: Props) {
           }
         >
           {parseFloat(props.balance.balanceInEther).toFixed(4)}
+        </Descriptions.Item>
+      )}
+      {props.wallet.old && (
+        <Descriptions.Item label="Tags">
+          <Tag color="red">
+            <CgDanger className="mr-2 inline-block" />
+            Old wallet
+          </Tag>
         </Descriptions.Item>
       )}
     </Descriptions>
