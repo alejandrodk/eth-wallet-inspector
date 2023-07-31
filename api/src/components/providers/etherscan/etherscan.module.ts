@@ -13,7 +13,7 @@ import { EtherscanService } from './etherscan.service';
           EnvObjects.ETHERSCAN_CONFIG,
         );
         return {
-          baseURL: `${apiHost}/`,
+          baseURL: `${apiHost}/api`,
           headers: {
             'Content-Type': 'application/json',
           },

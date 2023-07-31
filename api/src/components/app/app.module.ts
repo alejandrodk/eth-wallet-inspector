@@ -12,6 +12,7 @@ import {
 } from '../config/env.config';
 import { validate } from '../config/env.validation';
 import { EtherscanModule } from '../providers/etherscan/etherscan.module';
+import { WalletsModule } from 'src/modules/wallets/wallets.module';
 
 dotenv.config();
 dotenvFlow.config();
@@ -35,6 +36,7 @@ dotenvFlow.config();
       },
     }),
     EtherscanModule,
+    WalletsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
