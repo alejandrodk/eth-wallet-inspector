@@ -11,6 +11,13 @@ export class WalletsController extends ControllerBase<IWallet> {
     super(walletsService);
   }
 
+  @Get()
+  override find(@Query('favorites') favorites: string): Promise<IWallet[]> {
+    return this.walletsService.find({
+      ...(favorites ? { favorite: favorites === 'true' } : {}),
+    });
+  }
+
   @Get('balance')
   @CacheTTL(60 * 15 * 1000)
   getWalletsBalance(@Query('address') address: string) {

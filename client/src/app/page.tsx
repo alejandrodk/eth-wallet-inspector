@@ -5,7 +5,7 @@ import { TbWorldSearch } from "react-icons/tb";
 
 export default async function Home(props: {
   params: {};
-  searchParams: { currentCurrency: string; walletId: string };
+  searchParams: { currentCurrency: string; walletId: string; filter: string };
 }) {
   return (
     <main className="min-h-screen grid grid-rows-[5vh_auto] bg-slate-200">
@@ -18,6 +18,7 @@ export default async function Home(props: {
         <WalletList
           currentCurrency={props.searchParams.currentCurrency}
           walletId={props.searchParams.walletId}
+          filter={props.searchParams.filter}
         />
       </section>
     </main>

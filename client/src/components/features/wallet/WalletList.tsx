@@ -11,9 +11,12 @@ import WalletDetail from "@/components/views/WalletDetail";
 export default async function WalletList(props: {
   currentCurrency?: string;
   walletId?: string;
+  filter?: string;
 }) {
   const [wallets, rates] = await Promise.all([
-    getWallets(),
+    getWallets({
+      favorites: props.filter === "favorites" ? true : undefined,
+    }),
     getCurrencyRates(),
   ]);
   const balances = await getWalletsBalances(wallets.map((w) => w.address));

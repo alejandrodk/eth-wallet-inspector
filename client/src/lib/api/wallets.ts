@@ -3,8 +3,10 @@ import { IWallet, IWalletBalance, IWalletTx } from "../types/app.types";
 import { buildUrl } from "../utils/http.utils";
 import { apiUrls } from "./urls";
 
-export const getWallets = async (): Promise<IWallet[]> => {
-  const res = await fetch(apiUrls.wallets.getWallets(), {
+export const getWallets = async (params: {
+  favorites?: boolean;
+}): Promise<IWallet[]> => {
+  const res = await fetch(buildUrl(apiUrls.wallets.getWallets(), params), {
     cache: "no-cache",
   });
   if (!res.ok) return [];
