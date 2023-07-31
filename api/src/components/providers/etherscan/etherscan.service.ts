@@ -48,6 +48,15 @@ export class EtherscanService implements OnModuleInit {
     return data;
   }
 
+  getETHPrice() {
+    return this.callApi<{
+      ethbtc: string;
+      ethbtc_timestamp: string;
+      ethusd: string;
+      ethusd_timestamp: string;
+    }>('stats', 'ethprice');
+  }
+
   getWalletsBalance(wallets: string[]) {
     return this.callApi<EsAccountBalance[]>('account', 'balancemulti', {
       address: wallets.join(','),

@@ -1,5 +1,5 @@
-export type EsModules = 'account';
-export type EsActions = 'balancemulti' | 'txlist';
+export type EsModules = 'account' | 'stats';
+export type EsActions = 'balancemulti' | 'txlist' | 'ethprice';
 
 export interface EsApiResponse<T> {
   status: string;

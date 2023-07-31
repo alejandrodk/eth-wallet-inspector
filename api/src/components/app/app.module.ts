@@ -14,6 +14,7 @@ import { validate } from '../config/env.validation';
 import { EtherscanModule } from '../providers/etherscan/etherscan.module';
 import { WalletsModule } from 'src/modules/wallets/wallets.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { CurrenciesModule } from 'src/modules/currencies/currencies.module';
 
 dotenv.config();
 dotenvFlow.config();
@@ -37,11 +38,11 @@ dotenvFlow.config();
       },
     }),
     CacheModule.register({
-      // ttl: 36000,
       isGlobal: true,
     }),
     EtherscanModule,
     WalletsModule,
+    CurrenciesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
