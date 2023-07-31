@@ -1,17 +1,21 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { EtherscanService } from 'src/components/providers/etherscan/etherscan.service';
+import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
+import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
+import { WalletsService } from './wallets.service';
 
 @Controller('wallets')
+@UseInterceptors(CacheInterceptor)
 export class WalletsController {
-  constructor(private etherscanService: EtherscanService) {}
+  constructor(private walletsService: WalletsService) {}
 
   @Get('balance')
+  @CacheTTL(60 * 15 * 1000)
   getWalletsBalance(@Query('address') address: string) {
-    return this.etherscanService.getWalletsBalance(address.split(','));
+    return this.walletsService.getBalance(address.split(','));
   }
 
   @Get('transactions')
+  @CacheTTL(60 * 60 * 1000)
   getWalletTransactions(@Query('address') address: string) {
-    return this.etherscanService.getWalletTransactions(address);
+    return this.walletsService.getTransactions(address);
   }
 }

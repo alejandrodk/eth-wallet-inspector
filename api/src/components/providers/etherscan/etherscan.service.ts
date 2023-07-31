@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { EnvObjects, IEnvObjects } from 'src/components/config/env.config';
 import {
   EsAccountBalance,
+  EsAccountTx,
   EsActions,
   EsApiResponse,
   EsModules,
@@ -25,12 +26,12 @@ export class EtherscanService implements OnModuleInit {
     );
   }
 
-  private callApi(
+  private async callApi<T = any>(
     module: EsModules,
     action: EsActions,
     params?: Record<string, string>,
   ) {
-    return firstValueFrom(
+    const { data }: { data: EsApiResponse<T> } = await firstValueFrom(
       this.httpService.get(``, {
         params: {
           module,
@@ -41,26 +42,26 @@ export class EtherscanService implements OnModuleInit {
         },
       }),
     );
-  }
 
-  async getWalletsBalance(
-    wallets: string[],
-  ): Promise<EsApiResponse<EsAccountBalance[]>> {
-    const { data } = await this.callApi('account', 'balancemulti', {
-      address: wallets.join(','),
-    });
+    if (data.status === '0') throw new Error(data.result as any);
+
     return data;
   }
 
-  async getWalletTransactions(address: string) {
-    const { data } = await this.callApi('account', 'txlist', {
+  getWalletsBalance(wallets: string[]) {
+    return this.callApi<EsAccountBalance[]>('account', 'balancemulti', {
+      address: wallets.join(','),
+    });
+  }
+
+  getWalletTransactions(address: string) {
+    return this.callApi<EsAccountTx[]>('account', 'txlist', {
       address,
       startblock: '0',
       endblock: '99999999',
       page: '1',
+      limit: '100',
       sort: 'desc',
     });
-
-    return data;
   }
 }

@@ -13,6 +13,7 @@ import {
 import { validate } from '../config/env.validation';
 import { EtherscanModule } from '../providers/etherscan/etherscan.module';
 import { WalletsModule } from 'src/modules/wallets/wallets.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 dotenv.config();
 dotenvFlow.config();
@@ -34,6 +35,10 @@ dotenvFlow.config();
         );
         return { uri };
       },
+    }),
+    CacheModule.register({
+      // ttl: 36000,
+      isGlobal: true,
     }),
     EtherscanModule,
     WalletsModule,
