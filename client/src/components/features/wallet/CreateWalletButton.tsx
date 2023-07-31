@@ -10,11 +10,11 @@ export default function CreateWalletButton() {
   return (
     <>
       <button
-        className="bg-slate-100 rounded-md p-2 border-2 border-slate-400 hover:bg-slate-600 hover:text-white hover:border-slate-600"
+        className="bg-slate-100 rounded-md p-2 border-2 border-slate-400 hover:bg-slate-600 hover:text-white hover:border-slate-600 m-auto"
         onClick={() => setParam({ key: "showCreateWalletForm", value: "true" })}
       >
         <AiOutlinePlusCircle className="mr-2 inline-block" />
-        create
+        Add wallet
       </button>
       <SidePanel
         open={getParam("showCreateWalletForm") === "true"}
