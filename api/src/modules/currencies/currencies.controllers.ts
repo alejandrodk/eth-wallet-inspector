@@ -19,7 +19,10 @@ export class CurrenciesController
   }
 
   async onModuleInit() {
-    const ethPrice = await this.etherscanService.getETHPrice();
+    const [ethPrice] = await Promise.all([
+      this.etherscanService.getETHPrice(),
+      this.currenciesService.drop(),
+    ]);
     await Promise.all([
       this.currenciesService.create({
         currency: 'BTC',
@@ -28,6 +31,10 @@ export class CurrenciesController
       this.currenciesService.create({
         currency: 'USD',
         ethPrice: ethPrice.result.ethusd,
+      }),
+      this.currenciesService.create({
+        currency: 'EUR',
+        ethPrice: (parseFloat(ethPrice.result.ethusd) * 0.91).toFixed(4),
       }),
     ]);
   }

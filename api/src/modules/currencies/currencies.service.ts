@@ -8,4 +8,8 @@ export class CurrenciesService extends ServiceBase<ICurrencyRate> {
   constructor(protected repository: CurrenciesRepository) {
     super(repository);
   }
+
+  drop() {
+    return this.repository.deleteMany({});
+  }
 }
