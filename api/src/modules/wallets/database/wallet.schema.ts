@@ -13,7 +13,7 @@ export class Wallet implements IWallet {
   @Prop({ type: String, unique: true })
   id: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, unique: true })
   address: string;
 
   @Prop({ type: String })
@@ -21,6 +21,9 @@ export class Wallet implements IWallet {
 
   @Prop({ type: Boolean })
   favorite: boolean;
+
+  @Prop({ type: Boolean })
+  old: boolean;
 }
 
 export const WalletSchema = SchemaFactory.createForClass(Wallet);

@@ -61,7 +61,7 @@ export class EtherscanService implements OnModuleInit {
       endblock: '99999999',
       page: '1',
       limit: '100',
-      sort: 'desc',
+      sort: 'asc',
     });
   }
 }

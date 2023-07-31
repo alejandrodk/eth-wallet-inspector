@@ -4,6 +4,7 @@ import { ServiceBase } from 'src/components/shared/services/service';
 import { IWallet } from './wallets.types';
 import { WalletsRepository } from './wallets.repository';
 import { EtherscanService } from 'src/components/providers/etherscan/etherscan.service';
+import { isBefore, subYears } from 'date-fns';
 
 @Injectable()
 export class WalletsService extends ServiceBase<IWallet> {
@@ -12,6 +13,18 @@ export class WalletsService extends ServiceBase<IWallet> {
     private etherscanService: EtherscanService,
   ) {
     super(repository);
+  }
+
+  override async create(body: Partial<IWallet>): Promise<IWallet> {
+    const [firstTx] = await this.getTransactions(body.address);
+    if (
+      firstTx &&
+      isBefore(new Date(parseInt(firstTx.timestamp)), subYears(new Date(), 1))
+    ) {
+      body.old = true;
+    }
+
+    return this.repository.create(body);
   }
 
   async getBalance(address: string[]) {
