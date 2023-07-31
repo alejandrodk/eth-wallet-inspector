@@ -6,13 +6,9 @@ import { updateWalletAction } from "./actions/updateWalletAction";
 import { useRouter } from "next/navigation";
 
 export default function WalletFavButton(props: { wallet: IWallet }) {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const router = useRouter();
   let [_, startTransition] = useTransition();
-
-  useEffect(() => {
-    setIsFavorite(Boolean(props.wallet.favorite));
-  }, [props.wallet]);
+  const router = useRouter();
+  const isFavorite = props.wallet.favorite;
 
   const handleFav = () => {
     try {
@@ -21,7 +17,6 @@ export default function WalletFavButton(props: { wallet: IWallet }) {
           await updateWalletAction(props.wallet.id, {
             favorite: !isFavorite,
           });
-          setIsFavorite(!isFavorite);
         } catch (err) {}
       });
       router.refresh();

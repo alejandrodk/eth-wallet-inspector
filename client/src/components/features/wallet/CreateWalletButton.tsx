@@ -4,9 +4,11 @@ import useParamSetter from "@/lib/hooks/useParamSetter";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import CreateWalletForm from "./CreateWalletForm";
 import { cn } from "@/lib/utils/class.utils";
+import { useRouter } from "next/navigation";
 
 export default function CreateWalletButton() {
   const { setParam, getParam } = useParamSetter();
+  const router = useRouter();
 
   return (
     <>
@@ -23,9 +25,10 @@ export default function CreateWalletButton() {
       </button>
       <SidePanel
         open={getParam("showCreateWalletForm") === "true"}
-        onClose={() =>
-          setParam({ key: "showCreateWalletForm", value: undefined })
-        }
+        onClose={() => {
+          setParam({ key: "showCreateWalletForm", value: undefined });
+          router.refresh();
+        }}
       >
         <CreateWalletForm
           onSuccess={() =>

@@ -18,9 +18,9 @@ export default function CreateWalletForm(props: { onSuccess?: () => void }) {
       startTransition(async () => {
         try {
           await createWalletAction(values);
-          props.onSuccess?.();
         } catch (err) {}
       });
+      props.onSuccess?.();
     } catch (err) {}
   };
 
