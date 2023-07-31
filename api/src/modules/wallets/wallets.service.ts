@@ -19,7 +19,10 @@ export class WalletsService extends ServiceBase<IWallet> {
     const [firstTx] = await this.getTransactions(body.address);
     if (
       firstTx &&
-      isBefore(new Date(parseInt(firstTx.timestamp)), subYears(new Date(), 1))
+      isBefore(
+        new Date(parseInt(firstTx.timestamp) * 1000),
+        subYears(new Date(), 1),
+      )
     ) {
       body.old = true;
     }
@@ -36,8 +39,11 @@ export class WalletsService extends ServiceBase<IWallet> {
     }));
   }
 
-  async getTransactions(address: string) {
-    const res = await this.etherscanService.getWalletTransactions(address);
+  async getTransactions(address: string, opts?: { sort?: 'asc' | 'desc' }) {
+    const res = await this.etherscanService.getWalletTransactions(
+      address,
+      opts,
+    );
     return res.result.map((tx) => ({
       hash: tx.hash,
       timestamp: tx.timeStamp,

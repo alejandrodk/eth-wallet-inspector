@@ -1,10 +1,12 @@
 "use client";
 import { Descriptions, Tag } from "antd";
 import { LiaEthereum } from "react-icons/lia";
+import { FaListUl } from "react-icons/fa";
 import { CgDanger } from "react-icons/cg";
 import { BsCurrencyExchange } from "react-icons/bs";
 import { IWallet, IWalletBalance } from "@/lib/types/app.types";
 import WalletFavButton from "./WalletFavButton";
+import useParamSetter from "@/lib/hooks/useParamSetter";
 
 type Props = {
   wallet: IWallet;
@@ -16,9 +18,22 @@ type Props = {
 };
 
 export default function Wallet(props: Props) {
+  const { setParam } = useParamSetter();
+
   return (
     <Descriptions
-      extra={<WalletFavButton wallet={props.wallet} />}
+      extra={
+        <div className="flex flex-row">
+          <WalletFavButton wallet={props.wallet} />
+          <FaListUl
+            transform="scale(1.5)"
+            className="inline-block ml-5 hover:cursor-pointer"
+            onClick={() =>
+              setParam({ key: "walletId", value: props.wallet.id })
+            }
+          />
+        </div>
+      }
       layout="horizontal"
       title={props.wallet.name ?? props.wallet.name}
       className="m-auto bg-white p-4 mb-4 rounded-md shadow-md w-1/2 hover:bg-slate-50"

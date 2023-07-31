@@ -1,3 +1,4 @@
+import "server-only";
 import { ICurrencyRate } from "../types/app.types";
 import { apiUrls } from "./urls";
 

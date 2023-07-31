@@ -21,6 +21,6 @@ export class WalletsController extends ControllerBase<IWallet> {
   @Get(':address/transactions')
   @CacheTTL(60 * 60 * 1000)
   getWalletTransactions(@Param('address') address: string) {
-    return this.walletsService.getTransactions(address);
+    return this.walletsService.getTransactions(address, { sort: 'desc' });
   }
 }

@@ -63,14 +63,17 @@ export class EtherscanService implements OnModuleInit {
     });
   }
 
-  getWalletTransactions(address: string) {
+  getWalletTransactions(
+    address: string,
+    opts: { page?: number; offset?: number; sort?: 'asc' | 'desc' } = {},
+  ) {
     return this.callApi<EsAccountTx[]>('account', 'txlist', {
       address,
       startblock: '0',
       endblock: '99999999',
-      page: '1',
-      limit: '100',
-      sort: 'asc',
+      page: opts.page?.toString() ?? '1',
+      offset: opts.offset?.toString() ?? '10',
+      sort: opts.sort ?? 'asc',
     });
   }
 }
